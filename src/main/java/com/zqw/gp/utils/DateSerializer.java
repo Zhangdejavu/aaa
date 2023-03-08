@@ -1,4 +1,4 @@
-package com.zqw.gp.common;
+package com.zqw.gp.utils;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;

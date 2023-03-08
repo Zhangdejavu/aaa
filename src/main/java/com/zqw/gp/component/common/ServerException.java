@@ -1,6 +1,9 @@
-package com.zqw.gp.common;
+package com.zqw.gp.component.common;
 
 
+/**
+ * 系统异常抛出
+ */
 public class ServerException extends RuntimeException {
 	/**
 	 * 

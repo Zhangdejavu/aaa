@@ -1,4 +1,4 @@
-package com.zqw.gp.common.http;
+package com.zqw.gp.utils.http;
 
 import java.util.HashMap;
 import java.util.Map;

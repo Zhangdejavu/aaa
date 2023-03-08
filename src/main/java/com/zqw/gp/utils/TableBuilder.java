@@ -1,4 +1,6 @@
-package com.zqw.gp.common;
+package com.zqw.gp.utils;
+
+import com.zqw.gp.component.entity.UrlInfo;
 
 import java.lang.reflect.Field;
 import java.sql.Date;
@@ -19,7 +21,7 @@ public class TableBuilder {
 	 *            入参
 	 */
 	public static void main(String args[]) {
-		Class<?> c = TableBuilder.class;
+		Class<?> c = UrlInfo.class;
 		createTable(c);
 		createInsert(c);
 		createUpdate(c);

@@ -1,10 +1,10 @@
-package com.zqw.gp.common.http;
+package com.zqw.gp.utils.http;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-import com.zqw.gp.common.JsonUtils;
+import com.zqw.gp.utils.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,6 +79,30 @@ public class BaseHttp {
 		return null;
 	}
 
+	public static <T> List<T> getGetList(String url, Map<Object, Object> body, Class<T> clz) {
+		try {
+			// build request
+			String bodyStr = gson.toJson(body);
+			RequestModel request = new RequestModel(url, bodyStr);
+			String response = http.doGet(request);
+			return getList(response, clz);
+		} catch (Exception ex) {
+		}
+		return null;
+	}
+
+	public static <T> T getGetObj(String url, Map<String, String> paras, Map<String, String> headers, Class<T> clz) {
+		try {
+			// build request
+			RequestModel request = new RequestModel(url, paras,headers);
+			String response = http.doGet(request);
+			return getObjData(response, clz);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
+
 	@SuppressWarnings("unchecked")
 	private static <T> List<T> getList(String response, Class<T> clz) {
 		JsonArray arrs;
@@ -101,8 +125,16 @@ public class BaseHttp {
 		return values;
 	}
 
+	//返回原生的Http请求的实体类
+	private static <T> T getObj(String response, Class<T> clz) {
+		Gson gson = JsonUtils.getGson();
+		JsonObject obj = gson.fromJson(response, JsonObject.class);
+		return gson.fromJson(obj.toString(), clz);
+	}
+
+	//校验HTTP请求返回值并获取其中的data数据
 	@SuppressWarnings("unchecked")
-	public static <T> T getObj(String response, Class<T> clz) {
+	public static <T> T getObjData(String response, Class<T> clz) {
 		if (clz.equals(String.class)) {
 			return (T) response;
 		}

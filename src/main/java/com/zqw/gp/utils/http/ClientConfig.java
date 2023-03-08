@@ -1,4 +1,4 @@
-package com.zqw.gp.common.http;
+package com.zqw.gp.utils.http;
 
 /**
  * 请求的配置项，是否使用代理等信息

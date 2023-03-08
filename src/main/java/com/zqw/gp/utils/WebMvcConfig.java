@@ -1,4 +1,4 @@
-package com.zqw.gp.common;
+package com.zqw.gp.utils;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

@@ -1,10 +1,13 @@
-package com.zqw.gp.common;
+package com.zqw.gp.component.common;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * 异常码
+ */
 public class ErrorCode {
 
 	// 系统级别的错误放在这边。
@@ -24,6 +27,10 @@ public class ErrorCode {
 	public static final int TASK_CAN_NOT_CANCEL = 301;
 	public static final int TASK_DONE = 303;
 
+	/**
+	 * 通信相关的错误码
+	 */
+	public static final int URL_NOT_EXIT = 350;
 
 
 	// 获得所有的错误码关系的对应表。

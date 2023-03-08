@@ -1,4 +1,4 @@
-package com.zqw.gp.common;
+package com.zqw.gp.utils;
 
 import java.util.HashMap;
 import java.util.Map;

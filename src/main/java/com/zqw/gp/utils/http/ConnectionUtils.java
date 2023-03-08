@@ -1,4 +1,4 @@
-package com.zqw.gp.common.http;
+package com.zqw.gp.utils.http;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
