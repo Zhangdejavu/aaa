@@ -44,9 +44,16 @@ public class GpUtils {
     }
 
     public static Ticket chooseData(List<String> data){
-        Ticket ticket = new Ticket(data.get(2),data.get(3),data.get(6),data.get(7),data.get(16),data.get(17),data.get(8),data.get(9),data.get(10));
-        log.info("火车编号：{},车次：{}，出发地编号：{}，目的地编号：{}，发车地编号：{},终点编号：{}，出发时间：{}，到站时间：{}，持续时间：{}",
-                ticket.getTrainCode(),ticket.getTrainNo(),ticket.getFromStation(),ticket.getToStation(),ticket.getStartStation(),ticket.getEndStation(),ticket.getFromTime(),ticket.getToTime(),ticket.getCostTime());
+        String dataPrice = null;
+        if (data.size()==Constants.TRAIN_F_DATA_LENGTH){
+            dataPrice = data.get(27);
+        }else {
+            dataPrice = data.get(28);
+        }
+        Map<String,Float> seatPrice = buildSeatPrice(dataPrice);
+        Ticket ticket = new Ticket(data.get(2),data.get(3),data.get(6),data.get(7),data.get(4),data.get(5),data.get(8),data.get(9),data.get(10),data.get(23),data.get(22),data.get(21),data.get(20),data.get(13),seatPrice.get("businessSeatPrice"),seatPrice.get("firstSeatPrice"),seatPrice.get("secondSeatPrice"),seatPrice.get("noSeatPrice") );
+        log.info("火车编号：{},车次：{}，出发地编号：{}，目的地编号：{}，发车地编号：{},终点编号：{}，出发时间：{}，到站时间：{}，耗时：{}，商务座：{}，一等座：{}，二等座：{}，到站日期，{},商务座价格：{}，一等座价格：{}，二等座价格：{}，无座价格：{}",
+                ticket.getTrainCode(),ticket.getTrainNo(),ticket.getFromStation(),ticket.getToStation(),ticket.getStartStation(),ticket.getEndStation(),ticket.getFromTime(),ticket.getToTime(),ticket.getCostTime(),ticket.getBusinessSeat(),ticket.getFirstSeat(),ticket.getSecondSeat(),ticket.getNoSeat(),ticket.getArriveDate(),"商务座价格","一等座价格","二等座价格","无座价格");
         return ticket;
     }
 
@@ -82,5 +89,26 @@ public class GpUtils {
         paramMap.put("leftTicketDTO.to_station",dto.getTo_station());
         paramMap.put("purpose_codes",dto.getPurpose_codes());
         return paramMap;
+    }
+
+    public static Map<String,Float> buildSeatPrice(String str){
+        if (str==null || str.equals("") || str.length()!=Constants.SEAT_PRICE_STR_LENGTH){
+            return null;
+        }
+        Map<String,Float> seatPrice = new HashMap<>();
+        seatPrice.put("businessSeatPrice",buildPrice(str.substring(1,6)));
+        seatPrice.put("firstSeatPrice",buildPrice(str.substring(12,17)));
+        seatPrice.put("secondSeatPrice",buildPrice(str.substring(22,27)));
+        seatPrice.put("noSeatPrice",buildPrice(str.substring(32,37)));
+        return seatPrice;
+    }
+
+    public static float buildPrice(String str){
+        float thousand = Integer.valueOf(str.substring(0,1))*1000f;
+        float hundred = Integer.valueOf(str.substring(1,2))*100f;
+        float ten = Integer.valueOf(str.substring(2,3))*10f;
+        float one = Integer.valueOf(str.substring(3,4))*1f;
+        float dime = Integer.valueOf(str.substring(4,5))*0.1f;
+        return (thousand+hundred+ten+one+dime);
     }
 }

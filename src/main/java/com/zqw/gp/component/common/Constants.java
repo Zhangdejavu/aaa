@@ -36,4 +36,15 @@ public class Constants {
 	public static final String SERVER_LOCAL = "本地";
 	public static final String SERVER_ALI = "阿里云";
 	public static final String SERVER_TENCENT = "腾讯云";
+
+	public static final int SEAT_PRICE_STR_LENGTH = 40;
+	public static final int TRAIN_F_DATA_LENGTH = 30;
+	public static final int TRAIN_OTHER_DATA_LENGTH = 30;
+
+	public static final String TRAIN_TYPE_F = "9MO";
+	public static final String TRAIN_TYPE_G = "9MOO";
+	public static final String TRAIN_TYPE_D= "";
+	public static final String TRAIN_TYPE_Z= "";
+	public static final String TRAIN_TYPE_T= "";
+	public static final String TRAIN_TYPE_K= "1341";
 }

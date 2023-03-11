@@ -27,8 +27,17 @@ public class Ticket {
     private String fromTime;
     private String toTime;
     private String costTime;
+    private String businessSeat;
+    private String firstSeat;
+    private String secondSeat;
+    private String noSeat;
+    private String arriveDate;
+    private float businessSeatPrice;
+    private float firstSeatPrice;
+    private float secondSeatPrice;
+    private float noSeatPrice;
 
-    public Ticket(String trainCode, String trainNo, String fromStation, String toStation, String startStation, String endStation, String fromTime, String toTime, String costTime) {
+    public Ticket(String trainCode, String trainNo, String fromStation, String toStation, String startStation, String endStation, String fromTime, String toTime, String costTime, String businessSeat, String firstSeat, String secondSeat, String noSeat, String arriveDate, float businessSeatPrice, float firstSeatPrice, float secondSeatPrice, float noSeatPrice) {
         this.trainCode = trainCode;
         this.trainNo = trainNo;
         this.fromStation = fromStation;
@@ -38,5 +47,14 @@ public class Ticket {
         this.fromTime = fromTime;
         this.toTime = toTime;
         this.costTime = costTime;
+        this.businessSeat = businessSeat;
+        this.firstSeat = firstSeat;
+        this.secondSeat = secondSeat;
+        this.noSeat = noSeat;
+        this.arriveDate = arriveDate;
+        this.businessSeatPrice = businessSeatPrice;
+        this.firstSeatPrice = firstSeatPrice;
+        this.secondSeatPrice = secondSeatPrice;
+        this.noSeatPrice = noSeatPrice;
     }
 }
